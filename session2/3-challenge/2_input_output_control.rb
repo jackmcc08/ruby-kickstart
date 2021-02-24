@@ -20,7 +20,15 @@
 
 def hi_hi_goodbye
   # your code here
-
+  loop do
+    puts "Please enter a number"
+    input = gets.chomp
+    if input == "bye"
+      puts "goodbye"
+      break
+    end
+    puts "hi " * input.to_i
+  end
 end
 
 

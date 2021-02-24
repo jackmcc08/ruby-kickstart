@@ -10,5 +10,3 @@ def odds_and_evens(string, return_odds)
   return_odds == true ? string.each_char.with_index { |char, index| result << char if index.odd? } : string.each_char.with_index { |char, index| result << char if index.even? }
   result
 end
-
-# p odds_and_evens("abcdefg", true)

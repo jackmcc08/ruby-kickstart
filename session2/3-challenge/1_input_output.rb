@@ -9,5 +9,6 @@
 
 def sum_difference_product
   # your code goes here
-  
+  array = gets.split.map!{|x| x.to_i}
+  puts "#{array.reduce(:+)}\n#{array.reduce(:-)}\n#{array.reduce(:*)}\n"
 end
