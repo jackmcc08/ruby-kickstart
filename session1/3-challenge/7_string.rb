@@ -5,5 +5,7 @@
 # pirates_say_arrrrrrrrr("Pirates say arrrrrrrrr")        # => "arrrrrrrr"
 
 def pirates_say_arrrrrrrrr(string)
-
+  result = string.scan(/(?<=r)./i).join
 end
+
+pirates_say_arrrrrrrrr("are you really learning Ruby?")
