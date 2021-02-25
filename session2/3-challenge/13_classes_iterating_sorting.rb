@@ -31,7 +31,7 @@
 # lissa.blogs                     # => [#<Blog:0x007fec28c49b88
 #     @date=#<Date: 2010-05-28 ((2455345j,0s,0n),+0s,2299161j)>,
 #     @text="Sailor Mars is my favourite",
-#       @user=#<User:0x007fec2902e5c8 @blogs=[...], @username="QTSort">>] 
+#       @user=#<User:0x007fec2902e5c8 @blogs=[...], @username="QTSort">>]
 #
 # blog1 = lissa.blogs.first
 # blog1.user                      # => lissa
@@ -72,4 +72,107 @@
 
 # date docs are at: http://ruby-doc.org/core/classes/Date.html
 # don't spend too much time worrying about them :)
+
 require 'date'
+
+class User
+  attr_accessor :username, :blogs
+
+  def initialize(username)
+    self.username = username
+    self.blogs    = []
+  end
+
+  def add_blog(date, text)
+    added_blog = Blog.new(date, self, text)
+    blogs << added_blog
+    self.blogs = blogs.sort_by { |blog| blog.date }.reverse
+    added_blog
+  end
+end
+
+
+
+class Blog
+  attr_accessor :date, :user, :text
+
+  def initialize(date, user, text)
+    self.date = date
+    self.user = user
+    self.text = text
+  end
+
+  def summary
+    text.split[0..9].join(' ')
+  end
+
+  def entry
+    "#{user.username} #{date}\n#{text}"
+  end
+
+  def ==(other)
+    date   == other.date &&
+      user == other.user &&
+      text == other.text
+  end
+end
+# MY VERSION BELOW - could not figure out when do equality why the date method could not be called -
+# require 'date'
+#
+# class User
+#   def initialize(username)
+#     @username = username
+#     @blogs = Array.new
+#   end
+#
+#   attr_accessor 'username'
+#   attr_accessor 'blogs'
+#
+#   def add_blog(date, text)
+#     @blogs.unshift(Blog.new(date, self, text))
+#   end
+#
+#   def blogs
+#     @blogs #.map { |blog| puts blog.inspect}
+#   end
+#
+# end
+#
+# class Blog
+#   attr_accessor :date, :user, :text
+#
+#   def initialize(date, user, text)
+#     self.date = date
+#     self.user = user
+#     self.text = text
+#   end
+#
+#   def summary
+#     array = text.split(" ")
+#     array[0..9].join(" ")
+#   end
+#
+#   def entry
+#     return "#{user.username} #{date}\n#{text}"
+#   end
+#
+#   def ==(other)
+#     return date == other.date && user == other.user && text == other.text
+#   end
+#
+# end
+
+# user = User.new 'QTSort'
+# blog = user.add_blog(Date.today, "text")
+# blog2 = user.add_blog(Date.today, "text_2")
+# puts blog, blog2
+# puts user.blogs.first==(blog2)
+# user.blogs[0].date
+
+# expect(user.blogs.first).to eq blog
+
+# lissa = User.new 'QTSort'
+# puts lissa.username
+# puts lissa.blogs.inspect
+# lissa.add_blog Date.parse("2010-05-28") , "Sailor Mars is my favourite"
+# lissa.blogs.inspect

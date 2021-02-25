@@ -15,3 +15,29 @@
 # prime_chars? ['a', 'bcd']       # => false
 # prime_chars? ['a', 'b', 'cd']   # => false
 
+# require 'Prime'
+
+# def prime_chars?(strings)
+#   strings.empty? ? false : strings.map! { |string| string.length }.reduce(:+).prime?
+# end
+
+# puts prime_chars?([])
+
+def prime_chars?(strings)
+  strings.empty? || strings == [''] ? length = false : length = strings.map! { |string| string.length }.reduce(:+)
+  if length == false || length == 1
+    return false
+  elsif length == 2
+    return true
+  else
+    for num in 2..(Math.sqrt(length))
+      if length % num == 0
+        return false
+      end
+    end
+    return true
+  end
+end
+
+# puts prime_chars_2?([])
+# puts prime_chars?(['a', 'b', 'c'])

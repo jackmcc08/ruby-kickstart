@@ -43,6 +43,7 @@ GEM
       rack-protection (= 2.0.1)
       tilt (~> 2.0)
     tilt (2.0.8)
+    to_words (1.1.1)
     xpath (3.0.0)
       nokogiri (~> 1.8)
 
@@ -56,9 +57,10 @@ DEPENDENCIES
   rake
   rspec
   sinatra
+  to_words
 
 RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.1
+   1.17.3
