@@ -9,5 +9,26 @@
 # staircase 5  # => {1 => [], 3 => [2], 5 =>[2, 4]}
 
 
+def even_integers(num)
+  counter = 1
+  result = []
+  until counter > num
+    result << counter if counter.even?
+    counter = counter + 1
+  end
+  result
+end
 
+def staircase(number)
+  result = Hash.new
+  counter = 1
+  until counter > number
+    result[counter] = even_integers(counter) if counter.odd?
+    counter = counter + 1
+  end
+  result
+end
 
+# new_hash = staircase(5, &even_integers)
+#
+# puts new_hash

@@ -17,7 +17,7 @@ class << obj
     'Howdy, partner.'
   end
 end
-obj.singleton_class.instance_methods false # => [:greet]
+puts obj.singleton_class.instance_methods false # => [:greet]
 obj.singleton_methods # => [:greet]
 obj.greet # => "Howdy, partner."
 

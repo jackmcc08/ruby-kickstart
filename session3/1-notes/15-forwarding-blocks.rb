@@ -11,4 +11,4 @@ def meth2(&block)
 end
 
 counter = 0
-meth2 { counter += 10 } # => "(meth1: 10) (meth2: 20)"
+puts meth2 { counter += 10 } # => "(meth1: 10) (meth2: 20)"

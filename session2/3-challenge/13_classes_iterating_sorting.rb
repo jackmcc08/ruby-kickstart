@@ -130,6 +130,7 @@ end
 #
 #   def add_blog(date, text)
 #     @blogs.unshift(Blog.new(date, self, text))
+#
 #   end
 #
 #   def blogs

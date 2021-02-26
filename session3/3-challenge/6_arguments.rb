@@ -19,3 +19,20 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+def match_maker(*elements)
+  results = []
+  factor = elements[0]
+  elements[1..-1].each_slice(2) do |a, b|
+    if factor == true
+      results << (!!a == !!b ? false : true)
+    else
+      results << (!!a == !!b ? true : false)
+    end
+  end
+  results
+end
+
+# puts match_maker(true, true, true).inspect
+#
+# puts !!"abc"
+# puts !!0

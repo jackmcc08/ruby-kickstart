@@ -27,11 +27,14 @@
 
 class Person
 
-  attr_accessor :name
+  attr_accessor :name, :age, :quote
 
-  def initialize( &initializer )
+  def initialize(options = Hash.new, &initializer )
     @initializer = initializer
-    initializer.call self
+    initializer.call self if @initializer != nil
+    self.name = options[:name] if options.key?(:name)
+    self.age = options[:age] if options.key?(:age)
+    self.quote = options[:quote] if options.key?(:quote)
   end
 
   def reinit
@@ -39,3 +42,24 @@ class Person
   end
 
 end
+
+artist = Person.new :name => 'Prince' do |person|
+  person.age   = 47
+  person.quote = "Why don't you purify yourself in the waters of Lake Minnetonka?"
+end
+
+puts artist.name   # => "Prince"
+puts artist.age    # => 47
+puts artist.quote
+
+artist.name = 'The Artist Formarly Known As Prince'
+artist.age  = 1999
+
+puts artist.name   # => "The Artist Formarly Known As Prince"
+puts artist.age    # => 1999
+puts artist.quote
+artist.reinit
+
+puts artist.name   # => "The Artist Formarly Known As Prince"
+puts artist.age    # => 47
+puts artist.quote
