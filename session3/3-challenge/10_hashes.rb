@@ -30,5 +30,46 @@
 #
 # create it from scratch :)
 
+def pathify(paths)
+  # base step
+  return paths.map { |path| '/' + path } if paths.is_a? Array
+
+  # recursive step
+  to_return = []
+  paths.each do |parent_path, child_dirs|
+    parent_path = '/' + parent_path         # paths begin with a /
+    child_paths = pathify child_dirs        # convert child directories to paths
+    child_paths.each do |child_path|        # join each child path to it's parent path
+      to_return << (parent_path + child_path)
+    end
+  end
+  to_return
+  # paths.each do |key, value|
+  #   puts paths.dig(key, "bin")
+  #   puts key.inspect
+  #   puts value.inspect
+  #   value.each do |key, value|
+  #     puts key.inspect
+  #     puts value.inspect
+  #   end
+  # end
+  #
+  # result = ""
+  # paths.each do |key, value|
+  #   result << "/#{key}"
+  #   value.each do |x|
+  #     x.each do |key|
+  #       result << "/#{key}"
+  #       # result << "#{value}"
+  #     end
+  #   end
+  #   # result << "/#{value}"
+  # end
+  # puts result
+end
 
 
+pathify 'usr' => {'bin' => ['ruby']}                                                        # => ['/usr/bin/ruby']
+pathify 'usr' => {'bin' => ['ruby', 'perl'] }                                                # => ['/usr/bin/ruby', '/usr/bin/perl']
+pathify 'usr' => {'bin' => ['ruby'], 'include' => ['zlib.h'] }
+pathify 'usr' => {'bin' => ['ruby']}, 'opt' => {'local' => {'bin' => ['sqlite3', 'rsync']} }

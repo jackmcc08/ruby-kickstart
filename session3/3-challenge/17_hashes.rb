@@ -9,6 +9,29 @@
 #
 # print_list_in_reverse head   # >> "1\n2\n"
 
-def print_list_in_reverse list
-  
+def print_list_in_reverse(list, ary=[])
+  if list[:data] == 0
+    ary.reverse.each {|elem| puts elem }
+    return
+  end
+  ary << list[:data]
+  list[:data] -= 1
+  print_list_in_reverse(list, ary)
 end
+
+#
+# def print_list(head)
+#  # if head[:next] == nil
+#  #   list << "#{head[:data]}\n"
+#  #   return list
+#  # end
+#  puts head[:data]
+#  if head[:data] <= 1
+#    return
+#  else
+#    head[:data] -= 1
+#    print_list(head)
+#  end
+# end
+head = {:data => 5, :next => nil}
+print_list_in_reverse(head  )

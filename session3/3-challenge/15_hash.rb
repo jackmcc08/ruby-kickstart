@@ -46,5 +46,22 @@
 # head = {:data => 6, :next => head}
 # middle head                        # => 3
 
+def middle(head)
+  # return 1 if head[:next] == nil
+  (head[:data].to_f / 2).round
+end
+#
+head = {:data => 5, :next => head}
+puts middle head
+# def append(ary, n )
+#   if n == 0
+#     ary.push(0)
+#   else
+#     ary.push(n)
+#     append(ary, n-1)
+#   end
+# end
+#
+# puts append([], 5).inspect
 
-
+# you have to think that the recursive mehtod works already

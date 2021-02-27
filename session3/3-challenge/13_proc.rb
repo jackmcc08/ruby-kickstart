@@ -55,6 +55,30 @@
 # end       # => ["a", "m", "r", 1, 3, 4, 9, 2.5, 9.0, 25.8]
 
 
+def your_sort(elements, &block)
+  block ||= Proc.new { |a,b| a <=> b }
+  elements.sort { |a,b| block.call([a,b])}
+end
 
-
-
+# your_sort [24, 0, 68, 44, 68, 47, 42, 66, 89, 22]
+#
+# your_sort [24, 0, 68, 44, 68, 47, 42, 66, 89, 22] do |a, b|
+#   if a < b
+#     -1
+#   elsif a > b
+#     1
+#   else
+#     0
+#   end
+# end   # => [0, 22, 24, 42, 44, 47, 66, 68, 68, 89]
+# #
+#
+# your_sort [2.5, 'r', 1, 4, 'a', 9, 3, 9.0, 'm', 25.8] do |a, b|
+#   a_class_val = [String, Fixnum, Float].index(a.class)
+#   b_class_val = [String, Fixnum, Float].index(b.class)
+#   if a_class_val == b_class_val
+#     a <=> b
+#   else
+#     a_class_val <=> b_class_val
+#   end
+# end       # => ["a", "m", "r", 1, 3, 4, 9, 2.5, 9.0, 25.8]

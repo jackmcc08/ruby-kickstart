@@ -31,25 +31,12 @@
 #   end
 # end
 
+def array_init(size = 5, &block)
+  block ||= Proc.new {|i| "#{i * 100}" }
+  Array.new(size) { |i| block.call(i) }
+end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# array_init(2) { |i| i.to_s }    # => ['0', '1']
+# array_init { |i| i.to_s }       # => ['0', '1', '2', '3', '4']
+# array_init 2                    # => ['0', '100']
+# array_init                      # => ['0', '100', '200', '300', '400']
