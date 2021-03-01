@@ -26,3 +26,14 @@
 #   The fourth time the block is passed  35 , 10 and it returns 45
 #   The method then returns 45
 #
+def passthrough(elements, value, &block)
+  sum = value
+  elements.each do |elem|
+     sum = block.call(sum, elem)
+  end
+  sum
+end
+
+passthrough 5..10 , 0 do |sum,num|
+  sum + num
+end
