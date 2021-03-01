@@ -51,8 +51,8 @@ def middle(head)
   (head[:data].to_f / 2).round
 end
 #
-head = {:data => 5, :next => head}
-puts middle head
+# head = {:data => 5, :next => head}
+# puts middle head
 # def append(ary, n )
 #   if n == 0
 #     ary.push(0)

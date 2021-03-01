@@ -30,20 +30,18 @@
 #
 # create it from scratch :)
 
-def pathify(paths)
-  # base step
-  return paths.map { |path| '/' + path } if paths.is_a? Array
+# RETURN to THIS ONE
 
-  # recursive step
-  to_return = []
-  paths.each do |parent_path, child_dirs|
-    parent_path = '/' + parent_path         # paths begin with a /
-    child_paths = pathify child_dirs        # convert child directories to paths
-    child_paths.each do |child_path|        # join each child path to it's parent path
-      to_return << (parent_path + child_path)
-    end
+def pathify(paths)
+
+  if paths.is_a? Array
+    puts "/#{value}"
+    return
   end
-  to_return
+
+  to_return[]
+  paths.each do |key, value|
+
   # paths.each do |key, value|
   #   puts paths.dig(key, "bin")
   #   puts key.inspect
@@ -73,3 +71,19 @@ pathify 'usr' => {'bin' => ['ruby']}                                            
 pathify 'usr' => {'bin' => ['ruby', 'perl'] }                                                # => ['/usr/bin/ruby', '/usr/bin/perl']
 pathify 'usr' => {'bin' => ['ruby'], 'include' => ['zlib.h'] }
 pathify 'usr' => {'bin' => ['ruby']}, 'opt' => {'local' => {'bin' => ['sqlite3', 'rsync']} }
+
+
+
+# # base step
+# return paths.map { |path| '/' + path } if paths.is_a? Array
+#
+# # recursive step
+# to_return = []
+# paths.each do |parent_path, child_dirs|
+#   parent_path = '/' + parent_path         # paths begin with a /
+#   child_paths = pathify child_dirs        # convert child directories to paths
+#   child_paths.each do |child_path|        # join each child path to it's parent path
+#     to_return << (parent_path + child_path)
+#   end
+# end
+# to_return

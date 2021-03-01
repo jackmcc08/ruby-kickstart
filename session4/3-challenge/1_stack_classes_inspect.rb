@@ -39,10 +39,11 @@ class Stack
     to_return
   end
 end
+
 stack = Stack.new
 stack.push 1
 stack.push 2
-stack         # => #<Stack:0x00000100862698 @head=#<Node:0x00000100862648 @next=#<Node:0x00000100862670 @next=nil, @data=1>, @data=2>>
+puts stack         # => #<Stack:0x00000100862698 @head=#<Node:0x00000100862648 @next=#<Node:0x00000100862670 @next=nil, @data=1>, @data=2>>
 stack.pop     # => 2
 stack.pop     # => 1
 stack.pop     # => nil
@@ -56,7 +57,7 @@ stack = Stack.new
 stack.push 1
 stack.push 2
 stack.push 3
-stack # =>  (3)2)1)
+puts stack.inspect # =>  (3)2)1)
 
 class Stack
   def inspect
@@ -72,3 +73,4 @@ class Stack
   end
 end
 
+puts stack.inspect
